@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PGL - Proposta BID Onesubsea</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+        :root {
+            --pgl-verde: #026014;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+        .header-content {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .logo-placeholder {
+            max-width: 180px;
+            height: auto;
+            display: block;
+        }
+        .hero-section {
+            background-color: #3D4C4A;
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+        .hero-title {
+            font-family: 'Lato', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #404040;
+        }
+        .hero-subtitle {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(51,51,51,0.5);
+            color: #a8a8a8;
+        }
+        .world-map-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.2;
+            background-image: url("images/world-map-detailed.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+        section {
+            padding: 60px 0;
+        }
+        section:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+        .section-title {
+            font-size: 2rem;
+            color: var(--pgl-verde);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--pgl-verde);
+        }
+        .section-subtitle {
+            font-size: 1.5rem;
+            color: #3D4C4A;
+            margin-bottom: 20px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .grid-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .grid-item h4 {
+            color: #3D4C4A;
+            margin-bottom: 10px;
+        }
+        ul.feature-list {
+            list-style-type: none;
+            margin: 20px 0;
+            padding-left: 0;
+        }
+        ul.feature-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        ul.feature-list li:before {
+            content: "✓";
+            color: var(--pgl-verde);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .cta-section {
+            text-align: center;
+            background-color: #f5f5f5;
+            padding: 60px 0;
+        }
+        .cta-title {
+            font-size: 2rem;
+            color: var(--pgl-verde);
+            margin-bottom: 20px;
+        }
+        .cta-description {
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+        .button {
+            display: inline-block;
+            background-color: var(--pgl-verde);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            min-width: 260px;
+            max-width: 260px;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #3D4C4A;
+            color: var(--pgl-verde);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        .accordion {
+            margin-top: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
+        }
+        .accordion-header {
+            background-color: var(--pgl-verde);
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            position: relative;
+        }
+        .accordion-header::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            font-size: 1.2rem;
+        }
+        .accordion-header.active::after {
+            content: '-';
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            padding: 0 15px;
+            transition: max-height 0.3s ease;
+        }
+        .accordion-content p {
+            margin: 15px 0;
+        }
+        footer {
+            background-color: #3D4C4A;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: var(--pgl-verde);
+        }
+        .footer-copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .section-subtitle {
+                font-size: 1.3rem;
+            }
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .button-row {
+                flex-direction: column;
+            }
+            .button {
+                min-width: 200px;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <img src="images/logo/pgl_logo.png" alt="Logo PGL" class="logo-placeholder">
+    </div>
+</header>
+
+<section class="hero-section">
+    <div class="world-map-bg"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">PGL: Sua Parceira Estratégica em Logística Global para a Onesubsea</h1>
+        <p class="hero-subtitle">Soluções logísticas integradas que combinam qualidade, eficiência e tecnologia avançada para atender às necessidades específicas da Onesubsea.</p>
+    </div>
+</section>
+
+<section id="propostas" class="cta-section">
+    <div class="container">
+        <h2 class="cta-title">Explore Nossas Propostas Completas</h2>
+        <p class="cta-description">Para conhecer em detalhes nossa oferta para a Onesubsea, convidamos você a explorar nossas propostas completas com informações detalhadas sobre nossa abordagem técnica, taxas competitivas e condições comerciais.</p>
+        
+        <div class="button-container">
+            <div class="button-row">
+                <a href="pdfs/condições_tecnicas.pdf" target="_blank" class="button">Proposta Técnica (PDF)</a>
+                <a href="pdfs/certificações.pdf" target="_blank" class="button">Compliance & OEA (PDF)</a>
+            </div>
+            <div class="button-row">
+                <a href="pdfs/sistema.pdf" target="_blank" class="button">Infra Sistema (PDF)</a>
+                <a href="pdfs/implementação.pdf" target="_blank" class="button">Implementação (PDF)</a>
+            </div>
+            <div class="button-row">
+                 <a href="pdfs/air_rate.xlsx" target="_blank" class="button">Taxa Aérea</a> 
+                <a href="pdfs/ocean_rate.xlsx" target="_blank" class="button">Taxa Marítima</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção: Proposta Técnica -->
+<section class="technical-proposal-section">
+    <div class="container">
+        <h2 class="section-title">Proposta Técnica e Operacional</h2>
+        <p class="section-subtitle">Eficiência, Conformidade e Execução Estratégica</p>
+
+        <div class="grid-container">
+            <div class="grid-item">
+                <h4>1. Estrutura Operacional</h4>
+                <ul class="feature-list">
+                    <li>Equipe dedicada com estrutura hierárquica clara</li>
+                    <li>Sistemas modernos de rastreamento e gerenciamento</li>
+                    <li>Comunicação proativa em todas as etapas</li>
+                </ul>
+            </div>
+
+            <div class="grid-item">
+                <h4>2. Escopo dos Serviços</h4>
+                <ul class="feature-list">
+                    <li>Frete internacional para importações globais</li>
+                    <li>Modais marítimos e aéreos (LCL, FCL, Express, Economic)</li>
+                    <li>Atendimento a diversos destinos no Brasil</li>
+                </ul>
+            </div>
+
+            <div class="grid-item">
+                <h4>3. Hubs Logísticos</h4>
+                <ul class="feature-list">
+                    <li>Europa: Oslo, Hamburgo, Thurrock, Grangemouth, Londres, Paris</li>
+                    <li>América: Miami, Houston</li>
+                    <li>Ásia: Shanghai, Hong Kong, Kuala Lumpur</li>
+                </ul>
+            </div>
+
+            <div class="grid-item">
+                <h4>4. Conformidade e Sustentabilidade</h4>
+                <ul class="feature-list">
+                    <li>ISPM 15 / MAPA para embalagens de madeira</li>
+                    <li>Cálculo de emissões CO₂ com metodologia WTW</li>
+                    <li>KPIs com metas rígidas de prazo e qualidade</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="pdfs/condições_tecnicas.pdf" target="_blank" class="button">
+                Acessar Proposta Técnica Completa (PDF)
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Nova Seção: Compliance & OEA -->
+<section class="compliance-section">
+    <div class="container">
+        <h2 class="section-title">Compliance & OEA</h2>
+        <p class="section-subtitle">Conformidade, Certificações e Excelência Operacional</p>
+
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-header">Programa OEA (Operador Econômico Autorizado)</div>
+                <div class="accordion-content">
+                    <p>Alinhamento às melhores práticas globais com reconhecimento aduaneiro para operações mais seguras e eficientes.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">Compliance Regulatório</div>
+                <div class="accordion-content">
+                    <p>Processos rigorosos para garantir a conformidade com legislações nacionais e internacionais, mitigando riscos e garantindo transparência.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">Certificações e Auditorias</div>
+                <div class="accordion-content">
+                    <p>Certificações que reforçam nosso compromisso com qualidade e segurança em toda a cadeia logística.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="pdfs/certificações.pdf" target="_blank" class="button">
+                Acessar Compliance & OEA (PDF)
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Seção: Infra Sistema -->
+<section class="infra-sistema-section">
+    <div class="container">
+      <h2 class="section-title">Infraestrutura de Sistema</h2>
+      <p class="section-subtitle">Tecnologia, Visibilidade e Controle em Tempo Real</p>
+  
+      <div class="grid-container">
+        <div class="grid-item">
+          <h4>🔒 Acesso Seguro</h4>
+          <p>Sistema protegido por autenticação avançada, garantindo confidencialidade das informações e controle de acessos por perfil.</p>
+        </div>
+        <div class="grid-item">
+          <h4>📊 Dashboard Intuitivo</h4>
+          <p>Visualização clara das etapas logísticas com alertas, indicadores e atalhos práticos para acompanhar sua operação.</p>
+        </div>
+        <div class="grid-item">
+          <h4>📦 Gestão de Importações</h4>
+          <p>Gerenciamento completo dos embarques, documentação e previsões de chegada centralizadas em uma única plataforma.</p>
+        </div>
+        <div class="grid-item">
+          <h4>🛰️ Rastreamento em Tempo Real</h4>
+          <p>Atualizações automáticas de status com integração direta aos modais de transporte e aos hubs operacionais.</p>
+        </div>
+        <div class="grid-item">
+          <h4>📈 Power BI Integrado</h4>
+          <p>Dashboards personalizados com análises avançadas, KPIs estratégicos e cruzamento de dados com múltiplas fontes.</p>
+        </div>
+      </div>
+  
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="pdfs/sistema.pdf" target="_blank" class="button">Acessar Infraestrutura de Sistema (PDF)</a>
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    .infra-sistema-section {
+      background-color: #f9f9f9;
+      padding: 60px 0;
+    }
+    .infra-sistema-section .section-title {
+      color: #026014;
+      border-color: #026014;
+    }
+    .infra-sistema-section .section-subtitle {
+      color: #3D4C4A;
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+    }
+    .infra-sistema-section .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .infra-sistema-section .grid-item {
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease;
+    }
+    .infra-sistema-section .grid-item:hover {
+      transform: translateY(-5px);
+    }
+    .infra-sistema-section .grid-item h4 {
+      color: #026014;
+      margin-bottom: 10px;
+    }
+    .infra-sistema-section .grid-item p {
+      font-size: 0.95rem;
+      color: #444;
+    }
+    .infra-sistema-section .button {
+      background-color: #026014;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    .infra-sistema-section .button:hover {
+      background-color: #3D4C4A;
+      color: #026014;
+      transform: translateY(-2px);
+    }
+  </style>
+  
+
+<!-- Seção: Implementação -->
+<section class="implementacao-section">
+    <div class="container">
+      <h2 class="section-title">Plano de Implementação</h2>
+      <p class="section-subtitle">Transição Ágil, Controle Total e Entregas em 30 Dias</p>
+  
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker">1</div>
+          <div class="timeline-content">
+            <h4>Semana 1 – Kick-off e Preparação</h4>
+            <p>Reunião com stakeholders, definição da equipe, configuração inicial de sistemas e canais de comunicação. Elaboração dos SOPs.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">2</div>
+          <div class="timeline-content">
+            <h4>Semana 2 – Configuração & Treinamento</h4>
+            <p>Finalização dos SOPs, treinamentos intensivos, testes com fornecedores, rastreamento e templates de relatórios operacionais.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">3</div>
+          <div class="timeline-content">
+            <h4>Semana 3 – Operação Piloto</h4>
+            <p>Embarques reais com fluxos completos, validação ponta a ponta, coleta de feedback e ajustes finos no processo.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">4</div>
+          <div class="timeline-content">
+            <h4>Semana 4 – Go-live & Estabilização</h4>
+            <p>Transição para operação total, envio de relatórios, KPIs monitorados e encerramento oficial da fase de implementação.</p>
+          </div>
+        </div>
+      </div>
+  
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="pdfs/implementação.pdf" target="_blank" class="button">
+          Acessar Plano de Implementação (PDF)
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    .implementacao-section {
+      background-color: #ffffff;
+      padding: 60px 0;
+    }
+    .implementacao-section .section-title {
+      color: #026014;
+      border-color: #026014;
+    }
+    .timeline {
+      position: relative;
+      margin: 50px auto;
+      padding-left: 20px;
+      max-width: 900px;
+    }
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    .timeline-item:hover {
+      transform: scale(1.02);
+    }
+    .timeline-marker {
+      background-color: #026014;
+      color: white;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .timeline-content {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      width: 100%;
+    }
+    .timeline-content h4 {
+      margin: 0 0 10px;
+      color: #3D4C4A;
+    }
+    .timeline-content p {
+      margin: 0;
+      color: #444;
+      font-size: 0.95rem;
+    }
+    .implementacao-section .button {
+      background-color: #026014;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    .implementacao-section .button:hover {
+      background-color: #3D4C4A;
+      color: #026014;
+      transform: translateY(-2px);
+    }
+  </style>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    const accordions = document.querySelectorAll('.accordion-header');
+
+    accordions.forEach(header => {
+        header.addEventListener('click', () => {
+            const content = header.nextElementSibling;
+            header.classList.toggle('active');
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer>
+    <div class="container">
+        <p><strong>Contato PGL Brasil:</strong></p>
+        <p>Av. Salmão, 325 - 8o andar - Jardim Aquarius, São José dos Campos </p>
+        <p>Tel: +55  (12) 3939-4343 | Email: comercial@pglbr.com.br</p>
+        <p><a href="https://pglbr.com.br" target="_blank" rel="noopener noreferrer">www.pglbr.com.br</a></p>
+        <p class="footer-copyright">© 2025 PGL Brasil. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+</body>
+</html>
